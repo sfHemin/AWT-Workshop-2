@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Ascend Clinics Admin</label>
+    <description>Full read/edit access to the Ascend Clinics V3 Healthcare data model (Patient_ID__c + Appointment__c). Assign to builders and to the agent's running user.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <!-- Apex class execution: the agent's running user needs classAccess to INVOKE each
+         @InvocableMethod action. Without this the runtime withholds the action
+         (NO_USER_ACCESS) and the agent narrates instead of calling it. -->
+    <classAccesses>
+        <apexClass>VerifyPatientAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>GetUpcomingAppointmentsAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>RescheduleAppointmentAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>AnswerClinicPolicyAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EscalateToHumanAction</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <fieldPermissions>
+        <field>Contact.Patient_ID__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <!-- Birthdate + FirstName are read by VerifyPatientAction's SOQL. FirstName is a
+         standard name field (implicitly visible); Birthdate needs explicit FLS. -->
+    <fieldPermissions>
+        <field>Contact.Birthdate</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <!-- Note: Appointment_DateTime__c, Status__c and Contact__c are REQUIRED fields,
+         so they are implicitly visible and must NOT be listed here. -->
+    <fieldPermissions>
+        <field>Appointment__c.Department__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Appointment__c.Doctor__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <!-- Knowledge__kav custom fields read by AnswerClinicPolicyAction's grounding query.
+         Title/Summary are standard article fields (implicitly visible). -->
+    <fieldPermissions>
+        <field>Knowledge__kav.FAQ_Question__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Knowledge__kav.FAQ_Answer__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <field>Knowledge__kav.Chat_Answer__c</field>
+        <readable>true</readable>
+        <editable>true</editable>
+    </fieldPermissions>
+    <objectPermissions>
+        <object>Contact</object>
+        <allowRead>true</allowRead>
+        <allowCreate>true</allowCreate>
+        <allowEdit>true</allowEdit>
+        <allowDelete>false</allowDelete>
+        <viewAllRecords>true</viewAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <object>Appointment__c</object>
+        <allowRead>true</allowRead>
+        <allowCreate>true</allowCreate>
+        <allowEdit>true</allowEdit>
+        <allowDelete>true</allowDelete>
+        <viewAllRecords>true</viewAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
+    </objectPermissions>
+    <!-- Case: EscalateToHumanAction inserts a Case and re-queries its CaseNumber. -->
+    <!-- View/Modify All omitted for Case: the integration user's license disallows
+         "View All Case", and the action only re-reads the Case it just created (by Id,
+         which it owns), so basic CRUD is sufficient. -->
+    <objectPermissions>
+        <object>Case</object>
+        <allowRead>true</allowRead>
+        <allowCreate>true</allowCreate>
+        <allowEdit>true</allowEdit>
+        <allowDelete>false</allowDelete>
+        <viewAllRecords>false</viewAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
+    </objectPermissions>
+    <!-- Knowledge__kav: AnswerClinicPolicyAction reads published articles for grounding.
+         Read-only is sufficient (the action never writes Knowledge). View All omitted
+         to avoid license-restricted permissions. -->
+    <objectPermissions>
+        <object>Knowledge__kav</object>
+        <allowRead>true</allowRead>
+        <allowCreate>false</allowCreate>
+        <allowEdit>false</allowEdit>
+        <allowDelete>false</allowDelete>
+        <viewAllRecords>false</viewAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
+    </objectPermissions>
+</PermissionSet>

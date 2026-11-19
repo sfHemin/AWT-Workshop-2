@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Appointment_DateTime__c</fullName>
+    <label>Appointment Date/Time</label>
+    <type>DateTime</type>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <description>Scheduled date and time of the appointment. Reschedule target must be a weekday, 9am-5pm, within the next 30 days.</description>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Patient_ID__c</fullName>
+    <label>Patient ID</label>
+    <type>Text</type>
+    <length>10</length>
+    <externalId>true</externalId>
+    <unique>true</unique>
+    <caseSensitive>false</caseSensitive>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <description>Ascend Clinics patient identifier. Used (with Date of Birth) to verify a patient before any lookup or action. Never read out in full by the agent.</description>
+    <inlineHelpText>Unique patient identifier used for verification. Do not read out in full.</inlineHelpText>
+</CustomField>

@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "awt-sprint1",
+  "namespace": "",
+  "sfdcLoginUrl": "https://storm-b937d15ac2e285.my.salesforce.com",
+  "sourceApiVersion": "68.0"
+}

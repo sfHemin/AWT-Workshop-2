@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AiAgentDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <agentDSLEnabled>true</agentDSLEnabled>
+    <agentDescription>V3 Healthcare — verifies a patient with Patient ID + DOB, then shows only that patient&apos;s own upcoming appointments. Verification is a deterministic gate.</agentDescription>
+    <agentType>EinsteinServiceAgent</agentType>
+    <botUser>ascend-agent.edbc7fecab69@storm-org.agent</botUser>
+    <logPrivateConversationData>false</logPrivateConversationData>
+    <richContentEnabled>true</richContentEnabled>
+    <type>ExternalCopilot</type>
+</AiAgentDefinition>
